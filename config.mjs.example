@@ -1,0 +1,19 @@
+/********** SYSTEM CONFIGURATION. DO NOT MODIFY THESE LINES BELOW **********/
+export const SERUM_API_URL =
+  "https://solana-api.syndica.io/access-token/PlxlrbctMxm5qsacltZqGtVhUcPMbTqqema0uKb3CGxNrxhLWCJXYIDYhhU9xljH/rpc"; // Serum rpc
+/************************* END SYSTEM CONFIGURATION. ***********************/
+
+// SCORE configuration
+export const FLEET_PROGRAM_ID = "FLEET1qqzpexyaDpqb2DGsSzE2sDCizewCg9WjrA6DBW";
+export const RESOURCE_TIMEOUT_IN_SECONDS = 2 * 3600; // 2 hours
+export const TIME_TO_SCAN_FLEET_IN_SECONDS = 2 * 3600; // 2 hours
+export const RESOURCE_TOKEN_ACCOUNT = {
+  FOOD: "", // Food Token Account
+  FUEL: "", // Fuel Token Account
+  ARMS: "", // Arms Token Account
+  TOOLKIT: "", // Toolkit Token Account
+};
+
+/********** SENSITIVE AREA. WALLET ACCOUNT CONFIGURATION **********/
+export const WALLET_SECRET_KEY = "";
+/**********                END SENSITIVE AREA            **********/
