@@ -2,7 +2,7 @@ Automatically re-supply resources for fleets
 
 ## Requirements
 
-1. Nodejs
+1. Nodejs >= 16
 2. Npm or Yarn
 
 ## Configuration
