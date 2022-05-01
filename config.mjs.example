@@ -1,6 +1,6 @@
 /********** SYSTEM CONFIGURATION. DO NOT MODIFY THESE LINES BELOW **********/
 export const SERUM_API_URL =
-  "https://solana-api.syndica.io/access-token/PlxlrbctMxm5qsacltZqGtVhUcPMbTqqema0uKb3CGxNrxhLWCJXYIDYhhU9xljH/rpc"; // Serum rpc
+  "https://solana-api.projectserum.com/"; // Serum rpc
 /************************* END SYSTEM CONFIGURATION. ***********************/
 
 // SCORE configuration
