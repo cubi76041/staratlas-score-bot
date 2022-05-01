@@ -178,28 +178,40 @@ const reSupplyFleet = async (scoreVarsInfo, fleet) => {
 
 const scanFleets = async () => {
   writeLog("Start to scan fleets ...");
-  const scoreVarsInfo = await getScoreVarsInfo(conn, fleetProgram);
+  try {
+    const scoreVarsInfo = await getScoreVarsInfo(conn, fleetProgram);
 
-  const fleets =
-    (await getAllFleetsForUserPublicKey(
-      conn,
-      ownerAccount.publicKey,
-      fleetProgram
-    )) || [];
+    const fleets =
+      (await getAllFleetsForUserPublicKey(
+        conn,
+        ownerAccount.publicKey,
+        fleetProgram
+      )) || [];
 
-  for (let fleet of fleets) {
-    const transaction = new Transaction();
-    const fleetInstructions = await reSupplyFleet(scoreVarsInfo, fleet);
+    for (let fleet of fleets) {
+      const transaction = new Transaction();
+      const fleetInstructions = await reSupplyFleet(scoreVarsInfo, fleet);
 
-    if (fleetInstructions.length > 0) {
-      fleetInstructions.forEach((tx) => transaction.add(tx));
+      if (fleetInstructions.length > 0) {
+        fleetInstructions.forEach((tx) => transaction.add(tx));
 
-      writeLog("Re-supply fleet", fleet.shipMint.toString(), "...");
-      sendTransaction(transaction);
-      writeLog("Done !");
-      console.log("-----------------------------------------");
+        writeLog("Re-supply fleet", fleet.shipMint.toString(), "...");
+        sendTransaction(transaction);
+        writeLog("Done !");
+        console.log("-----------------------------------------");
+      }
     }
+  } catch(e) {
+    writeLog("Fail to update fleets ...", e);
+    writeLog("Restart to scan fleets after 30 secs ...");
+    writeLog("-----------------------------");
+    setTimeout(scanFleets, 30 * 1000);
   }
 };
 
-setInterval(scanFleets, TIME_TO_SCAN_FLEET_IN_SECONDS * 1000);
+const start = () => {
+  scanFleets();
+  setInterval(scanFleets, TIME_TO_SCAN_FLEET_IN_SECONDS * 1000);
+}
+
+start();
